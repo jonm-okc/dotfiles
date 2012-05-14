@@ -16,6 +16,14 @@ function pushd()
     builtin pushd "$@" > /dev/null
 }
 
+function files_exist()
+{
+	for f in $* ; do
+		if [ -e "$f" ] ; then return 1; fi
+	done
+	return 0
+}
+
 # Use the equal sign as a command-line calculator
 # NOTE: don't use any spaces if the * operator is used
 # can also enclose in single-quotes if using * or ()
@@ -254,6 +262,9 @@ alias jsondecode="php -r 'print_r(json_decode(file_get_contents(\"php://stdin\")
 
 
 # Load the other aliases
-for file in ~/.bash_aliases_* ; do
-	dotfile-load $(basename $file)
-done
+files_exist $DOTFILE_DIR/*_aliases.bash
+if [ "$?" == "1" ] ; then
+	for file in $DOTFILE_DIR/*_aliases.bash ; do
+		dotfile-load $(basename $file)
+	done
+fi

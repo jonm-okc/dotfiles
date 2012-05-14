@@ -37,7 +37,7 @@ function dotfile-load()
 export COPYFILE_DISABLE=true
 
 DONT_INCLUDE=".git-completion.bash "
-INCLUDE_DOT_FILES="prompt.bash aliases.bash"
+INCLUDE_DOT_FILES="prompt.bash aliases.bash set_path.bash complete.bash"
 dotfile-load $INCLUDE_DOT_FILES
 
 declare -x PAGER=less
