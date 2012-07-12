@@ -1,0 +1,88 @@
+######################################################################
+#		      mako's zshrc file, v0.1
+#
+# 
+######################################################################
+
+# next lets set some enviromental/shell pref stuff up
+# setopt NOHUP
+# setopt NOTIFY
+# setopt NO_FLOW_CONTROL
+setopt APPEND_HISTORY
+# setopt AUTO_LIST		# these two should be turned off
+# setopt AUTO_REMOVE_SLASH
+# setopt AUTO_RESUME		# tries to resume command of same name
+unsetopt BG_NICE		# do NOT nice bg commands
+setopt CORRECT			# command CORRECTION
+setopt EXTENDED_HISTORY		# puts timestamps in the history
+# setopt HASH_CMDS		# turns on hashing
+setopt HIST_ALLOW_CLOBBER
+setopt HIST_REDUCE_BLANKS
+setopt INC_APPEND_HISTORY SHARE_HISTORY
+setopt ALL_EXPORT
+
+setopt MENUCOMPLETE
+
+# Set/unset  shell options
+setopt   notify globdots correct pushdtohome cdablevars autolist
+setopt   correctall autocd recexact longlistjobs
+setopt   autoresume histignoredups pushdsilent noclobber
+setopt   autopushd pushdminus extendedglob rcquotes mailwarning
+unsetopt bgnice autoparamslash
+
+# Autoload zsh modules when they are referenced
+zmodload -a zsh/stat stat
+zmodload -a zsh/zpty zpty
+zmodload -a zsh/zprof zprof
+zmodload -ap zsh/mapfile mapfile
+
+
+TZ="America/Los_Angeles"
+HISTFILE=$HOME/.zhistory
+HISTSIZE=1000
+SAVEHIST=1000
+HOSTNAME="`hostname`"
+PAGER='less'
+EDITOR='vim'
+
+#LANGUAGE=
+LC_ALL='en_US.UTF-8'
+LANG='en_US.UTF-8'
+LC_CTYPE=C
+DISPLAY=:0
+
+if [ $SSH_TTY ]; then
+  MUTT_EDITOR=vim
+else
+  MUTT_EDITOR=emacsclient.emacs-snapshot
+fi
+
+unsetopt ALL_EXPORT
+
+# stty erase ^H &>/dev/null
+# bindkey "^[[3~" delete-char
+
+#chpwd() {
+#     [[ -t 1 ]] || return
+#     case $TERM in
+#     sun-cmd) print -Pn "\e]l%~\e\\"
+#     ;;
+#    *xterm*|screen|rxvt|(dt|k|E)term) print -Pn "\e]2;%~\a"
+#    ;;
+#    esac
+#}
+
+#chpwd
+
+autoload -U compinit
+compinit
+bindkey '^r' history-incremental-search-backward
+bindkey "^[[5~" up-line-or-history
+bindkey "^[[6~" down-line-or-history
+bindkey "^[[H" beginning-of-line
+bindkey "^[[1~" beginning-of-line
+bindkey "^[[F"  end-of-line
+bindkey "^[[4~" end-of-line
+bindkey ' ' magic-space    # also do history expansion on space
+bindkey '^I' complete-word # complete on tab, leave expansion to _expand
+
