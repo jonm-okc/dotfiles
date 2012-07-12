@@ -5,7 +5,9 @@ alias sl='ls'
 alias alt='ls -alt'
 alias dc='cd'
 
-alias php='/usr/bin/php'
+# alias php='/usr/bin/php'
+
+alias ruby='/opt/local/bin/ruby1.9'
 
 EXEC_RSYNC="rsync -rltv"
 alias myrsync="$EXEC_RSYNC"
