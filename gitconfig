@@ -1,0 +1,46 @@
+[user]
+	name = Jon M
+	email = jonm@okcupidlabs.com
+[core]
+	excludesfile = /Users/jonm/.gitignore_global
+	whitespace = trailing-space,space-before-tab
+	editor = /usr/bin/vim
+[push]
+	default = current
+[alias]
+	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+	wwwstaging = log origin/production/www..origin/staging/www --no-merges --pretty=format:'%h - %an, %ar : %s'
+[color]
+	ui = auto
+[branch]
+	autosetupmerge = true
+[rerere]
+	enabled = true
+
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+
+[difftool "Kaleidoscope"]
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[mergetool "Kaleidoscope"]
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+	trustExitCode = true
+
+[difftool "diffmerge"]
+	cmd = diffmerge \"$LOCAL\" \"$REMOTE\"
+[mergetool "diffmerge"]
+	cmd = diffmerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
+	trustExitCode = true
+
+[diff]
+	tool = Kaleidoscope
+[difftool]
+	prompt = false
+[merge]
+	tool = Kaleidoscope
+[mergetool]
+	prompt = false

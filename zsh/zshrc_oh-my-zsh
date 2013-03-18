@@ -5,7 +5,9 @@ ZSH=$HOME/dotfiles/zsh/oh-my-zsh
 # Look in $ZSH/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+# default = robbyrussell
+# ZSH_THEME="robbyrussell"
+ZSH_THEME="tjkirch"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -26,17 +28,22 @@ ZSH_THEME="robbyrussell"
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 # COMPLETION_WAITING_DOTS="true"
 
+# Force user to type 'exit' or 'logout' rather than just pressing ^D
+setopt ignoreeof
+
 # Which plugins would you like to load? (plugins can be found in $ZSH/plugins/*)
 # Custom plugins may be added to $ZSH/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(osx git github rvm brew ssh-agent textmate bundler)
+plugins=(osx git github rvm brew launchctl textmate bundler heroku)
 
 source $ZSH/oh-my-zsh.sh
+source $ZSH/../aliases.zsh
 
-# My custom aliases
-alias refcard="open ~/Dropbox/Programming/zsh_refcard.pdf"
-alias start-redis="/opt/local/bin/redis-server/redis-server /opt/local/etc/redis.conf"
-alias start-postgres="sudo su postgres -c '/opt/local/lib/postgresql91/bin/initdb -D /opt/local/var/db/postgresql91/defaultdb'"
+# Report CPU usage for commands running longer than 10 seconds
+export REPORTTIME=10
+
+# start up ssh-agent forwarding
+# zstyle :omz:plugins:ssh-agent agent-forwarding on
 
 #
 # Set the unix path
@@ -44,10 +51,12 @@ alias start-postgres="sudo su postgres -c '/opt/local/lib/postgresql91/bin/initd
 PATH=
 PATH=$PATH:/Developer/usr/bin
 # PATH=$PATH:/opt/local/bin:/opt/local/sbin
+PATH=$PATH:/usr/local/bin
 PATH=$PATH:/bin:/usr/bin
 PATH=$PATH:/sbin:/usr/sbin
 PATH=$PATH:/usr/X11/bin
 PATH=$PATH:/usr/local/git/bin
 PATH=$PATH:/usr/local/MacGPG2/bin
-PATH=$PATH:$HOME/bin:/usr/local/bin:/usr/local/mysql/bin
+PATH=$PATH:$HOME/bin:/usr/local/mysql/bin
+PATH=$PATH:/usr/local/sbin
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

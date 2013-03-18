@@ -254,7 +254,7 @@ function pp() {
 }
 
 alias today="date +%Y-%m-%d"
-alias now="date +%Y-%m-%d_%H%M%S"
+# alias now="date +%Y-%m-%d_%H%M%S"   # the %S has issues w/ zsh
 alias utctime='date -u +%Y-%m-%d\ %H:%M:%S'
 alias matedot="mate ~/dotfiles/"
 alias mateprops="mate ~/dev/workspace/*.properties"
