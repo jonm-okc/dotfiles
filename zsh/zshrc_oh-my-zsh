@@ -34,7 +34,7 @@ setopt ignoreeof
 # Which plugins would you like to load? (plugins can be found in $ZSH/plugins/*)
 # Custom plugins may be added to $ZSH/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(osx git github rvm brew launchctl textmate bundler heroku)
+plugins=(osx git github rvm brew launchctl textmate bundler heroku history-substring-search)
 
 source $ZSH/oh-my-zsh.sh
 source $ZSH/../aliases.zsh
