@@ -32,7 +32,6 @@ alias plz='foreman run bundle exec '
 # OKCL_DIR=$HOME/dev/OkCupid
 SCRATCH_DIR=$HOME/dev/OkCupid/scratch
 alias phxdir="pushd $HOME/dev/OkCupid/SinglesNet"
-alias sndb="mysql -h sn-userdbs-02 -u monitor -pmonitor4me --default-character-set=utf8 singlesnet4"
 alias solr-start="solr /usr/local/Cellar/solr/4.0.0/libexec/phoenix/solr"
 
 function delete_empty_dirs() {
@@ -60,28 +59,6 @@ function gitdeltag() {
 alias last_deploy_tag="git tag -l 'production/*' | tail -1"
 function diff_prod() {
   git fetch && git difftool $(last_deploy_tag) $(git_branch_name)
-}
-
-gitprod_deploy() {
-  if (( $# != 2 )) ; then
-    echo "Usage: gitprod_deploy <branch> <tagname>"
-    return -1
-  fi
-  branch=$1
-  tag=$2
-  
-  current_branch=$(git_branch_name)  
-  git stash save "stashing for deploy of $tag"
-  
-  git checkout "$branch" || return -1
-  git pull origin master || return -1
-  git push || return -1
-  git tag "$tag" || return -1
-  git push origin --tags || return -1
-  git checkout master || return -1
-  
-  git checkout $current_branch
-  git stash apply
 }
 
 function t {
