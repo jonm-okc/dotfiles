@@ -1,0 +1,12 @@
+# General Ack Settings
+####################################################################
+
+# only search with case sensitivity if there is mixed case
+--smart-case
+# follow symlinks
+--follow
+
+# Ack Type Settings
+####################################################################
+
+-type-set=ruby=.rb,.rhtml,.rjs,.rxml,.erb,.rake,.spec,.haml
